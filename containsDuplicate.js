@@ -15,21 +15,25 @@
 // Output: true
 
 //input: array
-//output: boolean - unique values = false
+//output: boolean -
+// !duplicate = true
+// !unique = false
 //Time Complexity: O(N)
-const containsDuplicate = (nums) => {
+var containsDuplicate = function (nums) {
   //loop overy array
   //add value to hash as key
-  //if curr value already exist in hash, return true
-  //at end of array return false because all values are unique
-
   let hash = {};
   for (let val of nums) {
-    if (!hash.hasOwnProperty(val)) {
-      hash[val] = val;
-    } else if (hash[val]) {
+    //if curr value already exist in hash, return true
+    if (hash[val] !== undefined) {
       return true;
+    } else {
+      hash[val] = val;
     }
   }
+  //at end of array return false because all values are unique
   return false;
 };
+
+console.log(containsDuplicate([0, 4, 5, 0, 3, 6])); //true
+console.log(containsDuplicate([1, 2, 3, 4])); //false
