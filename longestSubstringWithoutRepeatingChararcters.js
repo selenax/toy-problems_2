@@ -28,10 +28,12 @@ const lengthOfLongestSubstring = (str) => {
   let max = 0;
   let start = 0;
   //assign current char as key, index as value
-  //if duplicate char, start again from last index of char + 1
+
   for (let i = 0; i < str.length; i++) {
     let currChar = str[i];
-    if (hash[currChar]) {
+    // if duplicate char, start again from last index of the char + 1
+    // need to account for when duplicate is at index 0, falsy value
+    if (hash[currChar] >= start) {
       start = hash[currChar] + 1;
     }
     hash[currChar] = i;
