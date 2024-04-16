@@ -4,8 +4,6 @@
 
 // You can return the answer in any order.
 
- 
-
 // Example 1:
 
 // Input: nums = [2,7,11,15], target = 9
@@ -21,12 +19,16 @@
 // Output: [0,1]
 
 function twoSum(arr, k) {
-    let hash = {};
-    for(let i in arr) {
-        let diff = k - arr[i]; //looks for the difference since it will be in remaining array
-        if(hash[[arr[i]]]){  //2nd loop: checks to see if hash has current value{7: }
-            return [hash[arr[i]], i]
-        } else { hash[diff] = i; } //1st loop: add to hash{7: 0}
-    }
+  let hash = {};
+  for (let i in arr) {
+    let diff = k - arr[i]; //looks for the difference since it will be in remaining array
+    if (hash[[arr[i]]]) {
+      //2nd loop: checks to see if hash has current value{7: }
+      return [hash[arr[i]], i];
+    } else {
+      hash[diff] = i;
+    } //1st loop: add to hash{7: 0}
+  }
 }
- 
+
+console.log(twoSum([3, 2, 4], 6));
