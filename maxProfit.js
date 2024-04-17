@@ -23,7 +23,7 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 //fnd the smallest value and biggest value based on order of array
 //return difference
 
-//brute force O(N^2)
+//brute force O(n^2) Space:0(1)
 // const maxProfit = (prices) => {
 //   let profit = 0;
 //   let result = 0;
@@ -37,16 +37,18 @@ Explanation: In this case, no transactions are done and the max profit = 0.
 //   return profit;
 // };
 
+//refactor Time:O(n) Space:O(1)
 const maxProfit = (prices) => {
   let buy = 0;
   let sell = 1;
 
   let profit = 0;
   // buy should never reach last index of prices
-  // if buy < sell , check for profit & max
-  // else sell < buy, assign buy = sell  since that's the new lower price
-  // move sell to next index to check for the new minimum or log profit
-  // after sell reaches end of array, it will return undefined
+  // if buy is less , check for profit & max
+  // else sell is less, found the lower price, assign to buy
+  // move sell to next index to check for the next minimum or log profit
+  // after sell reaches end of array, it will return undefined at next iteration => falsy 
+  // buy becomes sell, exit loop, returns profit
   while (buy < prices.length) {
     // console.log(prices[sell], sell);
     if (prices[buy] < prices[sell]) {
@@ -61,6 +63,7 @@ const maxProfit = (prices) => {
   }
   return profit;
 };
+
 
 // console.log(maxProfit([7, 6, 4, 3, 1])); // 0
 // console.log(maxProfit([7, 1, 5, 3, 6, 4])); // 5
