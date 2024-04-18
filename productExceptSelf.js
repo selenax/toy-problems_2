@@ -37,6 +37,7 @@
 //   return result;
 // };
 
+//Time:O(n) Space:O(n)
 const productExceptSelf = (nums) => {
   let n = nums.length;
   let prefix = new Array(n).fill(1);
