@@ -51,15 +51,17 @@ const productExceptSelf = (nums) => {
   //1st array - prefix - i contains the products of all elements to right of i
   //2nd array - suffix - i contains the products of all elements to the left of i
   //result array is the product of each matching element in the temp arrays
-  for (let i = 1; i < n; i++) {
-    prefix[i] = prefix[i - 1] * nums[i - 1];
-  }
 
   for (let i = n - 2; i >= 0; i--) {
     suffix[i] = suffix[i + 1] * nums[i + 1];
   }
 
+  // for (let i = 1; i < n; i++) {
+  //   prefix[i] = prefix[i - 1] * nums[i - 1];
+  // }
+
   for (let i = 0; i < n; i++) {
+    prefix[i + 1] = prefix[i] * nums[i]; //refactored from for loop above
     result[i] = prefix[i] * suffix[i];
   }
 
