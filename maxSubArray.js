@@ -35,7 +35,7 @@
 //   return max;
 // };
 
-// refactor Time:O(n) Space:O(n)
+// refactor Time:O(n) Space:O(1)
 // const maxSubArray = (nums) => {
 //   let max = nums[0];
 //   let sum = nums[0];
