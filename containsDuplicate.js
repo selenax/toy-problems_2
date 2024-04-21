@@ -16,8 +16,8 @@
 
 //input: array
 //output: boolean -
-// !duplicate = true
-// !unique = false
+// duplicate = true
+// unique = false
 //Time Complexity: O(N)
 var containsDuplicate = function (nums) {
   //loop overy array
