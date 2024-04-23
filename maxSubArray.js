@@ -43,8 +43,6 @@
 //   for (let i = 1; i < nums.length; i++) {
 //     sum += nums[i];
 //     if (sum <= nums[i]) {
-//       console.log(nums[i], 'sum');
-
 //       sum = nums[i];
 //       max = Math.max(max, sum);
 //     }
@@ -54,25 +52,26 @@
 // };
 
 // sliding window
-const maxSubArray = (nums) => {
-  let left = 0;
-  let right = 1;
-  let sum = nums[0];
-  let max = nums[0];
+// const maxSubArray = (nums) => {
+//   let left = 0;
+//   let right = 1;
+//   let sum = nums[0];
+//   let max = nums[0];
 
-  while (right < nums.length) {
-    sum = nums[right] + sum;
-    max = Math.max(sum, max);
-    if (nums[right] >= sum) {
-      left = right;
-      sum = nums[left];
-      max = Math.max(sum, max);
-    }
-    right++;
-  }
-  return max || 0;
-};
-// //Kadane's
+//   while (right < nums.length) {
+//     sum = nums[right] + sum;
+//     max = Math.max(sum, max);
+//     if (nums[right] >= sum) {
+//       left = right;
+//       sum = nums[left];
+//       max = Math.max(sum, max);
+//     }
+//     right++;
+//   }
+//   return max || 0;
+// };
+
+//Kadane's
 // const maxSubArray = (nums) => {
 //   let local_max = nums[0];
 //   let global_max = nums[0];
@@ -87,16 +86,17 @@ const maxSubArray = (nums) => {
 // };
 
 // refactor from above solution
-// const maxSubArray = (nums) => {
-//   let max = nums[0];
-//   let sum = nums[0];
+const maxSubArray = (nums) => {
+  let max = nums[0];
+  let sum = nums[0];
 
-//   for (let i = 1; i < nums.length; i++) {
-//     sum = Math.max(nums[i] + sum, nums[i]);
-//     max = Math.max(max, sum);
-//   }
-//   return max || 0;
-// };
+  for (let i = 1; i < nums.length; i++) {
+    sum = Math.max(nums[i] + sum, nums[i]);
+    max = Math.max(max, sum);
+  }
+  return max || 0;
+};
+
 console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4])); //6
 console.log(maxSubArray([1])); //1
 console.log(maxSubArray([-1, 0, -2])); //0
