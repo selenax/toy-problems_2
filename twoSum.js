@@ -23,12 +23,29 @@ function twoSum(arr, k) {
   for (let i in arr) {
     let diff = k - arr[i]; //looks for the difference since it will be in remaining array
     if (hash[[arr[i]]]) {
-      //2nd loop: checks to see if hash has current value{7: }
       return [hash[arr[i]], i];
     } else {
       hash[diff] = i;
-    } //1st loop: add to hash{7: 0}
+    }
   }
 }
 
 console.log(twoSum([3, 2, 4], 6));
+
+//TASK: find all pairs
+function twoSum2(arr, k) {
+  const hash = {};
+  const result = [];
+  for (let val of arr) {
+    const diff = k - val;
+    if (!hash.hasOwnProperty(val)) {
+      hash[diff] = val; //{8:1}
+    } else {
+      result.push([hash[val], val]);
+    }
+  }
+  return result;
+}
+
+console.log(twoSum2([1, 2, 3, 4, 6, 7, 8, 9], 9));
+//output: [[6,3],[7,2],[8,1]]
