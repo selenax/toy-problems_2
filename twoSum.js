@@ -49,3 +49,21 @@ function twoSum2(arr, k) {
 
 console.log(twoSum2([1, 2, 3, 4, 6, 7, 8, 9], 9));
 //output: [[6,3],[7,2],[8,1]]
+
+//TASK: find pair with smallest index
+[1, 5, 0, 1, 2, 7, 8, 6], 13;
+//output: [1,6]
+function twoSum3(arr, k) {
+  let hash = {};
+
+  for (let i in arr) {
+    const diff = k - arr[i];
+    if (!hash.hasOwnProperty([arr[i]])) {
+      hash[diff] = i;
+    } else {
+      return [i, hash[arr[i]]];
+    }
+  }
+}
+
+console.log(twoSum3([1, 5, 0, 1, 2, 7, 8, 6], 13));
