@@ -15,6 +15,7 @@
 // Output: -1
 // Explanation: 2 does not exist in nums so return -1
 
+// Time:O(log n) Space:O(1)
 // const search = (arr, k) => {
 //   let start = 0;
 //   let end = arr.length - 1;
@@ -31,14 +32,17 @@
 //   return arr[mid] === k ? mid : -1;
 // };
 
+// refactor - recursion
 const search = (arr, k, start, end) => {
-  if (start > end) return -1;
   let mid = Math.floor((start + end) / 2);
+
+  //base case
+  if (start > end) return -1;
   if (arr[mid] === k) return mid;
+
   if (arr[mid] < k) {
     return search(arr, k, (start = mid + 1), end);
-  }
-  if (arr[mid] > k) {
+  } else if (arr[mid] > k) {
     return search(arr, k, start, (end = mid - 1));
   }
   return search(arr, k, 0, arr.length - 1);
@@ -46,4 +50,4 @@ const search = (arr, k, start, end) => {
 
 console.log(search([-1, 0, 3, 5, 9, 12], 2)); //-1
 console.log(search([-1, 0, 3, 5, 9, 12], 9)); //4
-// console.log(search([-1, 0, 3, 5, 9, 12], 9)); //4
+console.log(search([-1, 0, 3, 5, 9, 12], 5)); //3
