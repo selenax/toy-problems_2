@@ -47,3 +47,6 @@ const findMin = (nums) => {
 const findMin2 = (nums) => {
   return Math.min(...nums);
 };
+
+//O(log N)
+const findMin3 = (nums) => {};
