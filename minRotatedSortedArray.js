@@ -31,3 +31,19 @@
 
 // 1. min value is always to the right of the largest value
 // 2. largest value is always to the left of min value
+
+//brute force O(N)
+const findMin = (nums) => {
+  let min = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] < min) {
+      min = nums[i];
+    }
+  }
+  return min;
+};
+
+//refactor O(2N) => O(N)
+const findMin2 = (nums) => {
+  return Math.min(...nums);
+};
