@@ -29,24 +29,47 @@
 // All the integers of nums are unique.
 // nums is sorted and rotated between 1 and n times.
 
-// 1. min value is always to the right of the largest value
-// 2. largest value is always to the left of min value
-
-//brute force O(N)
+//brute force: O(2N) => O(N)
 const findMin = (nums) => {
+  return Math.min(...nums);
+};
+
+//brute force: O(N)
+const findMin2 = (nums) => {
   let min = nums[0];
   for (let i = 1; i < nums.length; i++) {
-    if (nums[i] < min) {
-      min = nums[i];
-    }
+    min = Math.min(min, nums[i]);
   }
   return min;
 };
 
-//refactor O(2N) => O(N)
-const findMin2 = (nums) => {
-  return Math.min(...nums);
-};
+// console.log(findMin2([4,5,6,7,0,1,2]));
 
 //O(log N)
-const findMin3 = (nums) => {};
+// If array is sorted, then arr[lo] < arr[hi]
+const findMin3 = (nums) => {
+  /*
+1. we can optimize the minimum element searching by using Binary Search where we start at the mid element and then decide whether to stop, to the left half or right half:
+    - if arr[mid] > arr[high], inflection point is on the right side because in an ascending order the mid is smaller than the high. That means left half is sorted, we'll search the right half. 
+      ** UPDATE low = mid + 1 
+    - if arr[mid] <= arr[end], inflection is on the left side. Meaning right is sorted, target is in the left half. 
+      ** UPDATE high = mid. (curr mid could be the target)
+*/
+  let lo = 0,
+    hi = nums.length - 1;
+
+  while (lo < hi) {
+    if (nums[lo] < nums[hi]) return nums[lo];
+
+    const mid = Math.floor((lo + hi) / 2);
+
+    if (nums[mid] > nums[hi]) {
+      lo = mid + 1;
+    } else {
+      hi = mid;
+    }
+  }
+  return lo;
+};
+
+console.log(findMin3([4, 5, 6, 7, 0, 1, 2]));
