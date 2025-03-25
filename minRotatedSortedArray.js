@@ -57,7 +57,7 @@ const findMin3 = (nums) => {
 */
   let lo = 0,
     hi = nums.length - 1;
-  //goal of each iteration is identifying the inflections to leads to the the minimal number.
+  //goal of each iteration is to move closer to the inflection point because that's where the minimum value is
   while (lo < hi) {
     //return the lowest if array is already sorted 
     if (nums[lo] < nums[hi]) return nums[lo];
