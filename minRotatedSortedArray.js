@@ -59,18 +59,60 @@ const findMin3 = (nums) => {
     hi = nums.length - 1;
   //goal of each iteration is to move closer to the inflection point because that's where the minimum value is
   while (lo < hi) {
-    //return the lowest if array is already sorted 
+    //return the lowest if array is already sorted
     if (nums[lo] < nums[hi]) return nums[lo];
 
     const mid = Math.floor((lo + hi) / 2);
 
+    //this condition dictates if we are looking for max or min
     if (nums[mid] > nums[hi]) {
       lo = mid + 1;
     } else {
       hi = mid;
     }
   }
-  return lo;
+  return nums[lo];
 };
+// console.log(findMin3([4, 5, 6, 7, 0, 1, 2]));
 
-console.log(findMin3([4, 5, 6, 7, 0, 1, 2]));
+//TODO --- !! MAX !! in rotated sorted array?
+const findMax = (nums) => {
+  let lo = 0;
+  let hi = nums.length - 1;
+
+  //array already sorted or array len = 1
+  if (nums[lo] < nums[hi]) return nums[hi];
+
+  while (lo < hi) {
+    const mid = Math.floor((lo + hi) / 2);
+
+    if (nums[mid] < nums[lo]) {
+      //inflection from lo...mid, search left, update hi to mid - 1
+      hi = mid - 1;
+    } else {
+      //else mid > lo meaning lo->mid is sorted; search right and lo becomes mid
+      lo = mid;
+    }
+  }
+  return nums[lo];
+};
+console.log(findMax([4, 5, 6, 7, 0, 1, 2]));
+console.log(findMax([4, 5, 6, 0, 1, 2]));
+console.log(findMax([4, 0, 1, 2]));
+
+/* 
+
+ALGORITHM:
+1. Using mid to compare and find the inflection that disrupts the ascending order
+    by nature, [low........high]
+                left       right
+   
+    HOWEVER, once rotated, ascending order is switched - 
+                 [high......low]
+                 left      right
+
+2. To find min, based on rotated order, we compare mid to values on the right. 
+
+3. To find max, based on rotated order, we compare mid to values on the left. 
+
+*/
