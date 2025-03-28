@@ -25,13 +25,54 @@ nums is an ascending array that is possibly rotated.
 
 //brute force: O(N) Time & O(1) Space
 const search = (nums, target) => {
-  for (let i in nums) {
-    if (nums[i] === target) return i;
-  }
-  return -1;
+	for (let i in nums) {
+		if (nums[i] === target) return i;
+	}
+	return -1;
 };
 
-console.log(search([4, 5, 6, 7, 0, 1, 2], 0)); //4
-console.log(search([4, 5, 6, 7, 0, 1, 2], 3)); //-1
+// console.log(search([4, 5, 6, 7, 0, 1, 2], 0)); //4
+// console.log(search([4, 5, 6, 7, 0, 1, 2], 3)); //-1
 
 const search2 = (nums, target) => {};
+
+const findPivot = (nums) => {
+	let left = 0,
+		right = nums.length - 1;
+
+	if (nums[left] < nums[right]) return nums[left];
+
+	while (left <= right) {
+		let mid = Math.floor((left + right) / 2);
+
+		if (nums[mid] > nums[right]) {
+			left = mid + 1;
+		} else {
+			right = mid;
+		}
+	}
+	return nums[left];
+};
+
+const binarySearch = (arr, k) => {
+	let left = 0;
+	let right = arr.length - 1;
+
+	while (left <= right) {
+		console.log(`left=${arr[left]}, right=${arr[right]} `);
+
+		let mid = Math.floor((left + right) / 2);
+		if (arr[mid] === k) {
+			return mid;
+		} else if (arr[mid] < k) {
+			left = mid + 1;
+		} else {
+			right = mid - 1;
+		}
+	}
+	return -1;
+};
+
+console.log(binarySearch([0, 1, 2, 3, 5, 6, 8], 8)); //6
+// console.log('hello');
+let arr = [0, 1, 2, 3, 5, 6, 8];
